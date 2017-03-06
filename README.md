@@ -7,11 +7,10 @@ SQLAdvisor是由美团点评公司技术工程部DBA团队（北京）开发维�
 ### 二、SQLAdvisor详细说明
 
 1. [SQLAdvisor快速入门教程](./doc/QUICK_START.md)
-2. [SQLAdvisor用户使用手册](./doc/USER_GUIDE.md)
-3. [SQLAdvisor架构和实践](./doc/THEORY_PRACTICES.md)
-4. [SQLAdvisor release notes](./doc/RELEASE_NOTES.md)
-5. [SQLAdvisor开发规范](./doc/DEVELOPMENT_NORM.md)
-6. [FAQ](./doc/FAQ.md)
+2. [SQLAdvisor架构和实践](./doc/THEORY_PRACTICES.md)
+3. [SQLAdvisor release notes](./doc/RELEASE_NOTES.md)
+4. [SQLAdvisor开发规范](./doc/DEVELOPMENT_NORM.md)
+5. [FAQ](./doc/FAQ.md)
 
 ### 三、SQLAdvisor的需求及Bug反馈方式
 
