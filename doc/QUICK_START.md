@@ -62,6 +62,7 @@ Application Options:
 ```
 ./sqladvisor -h xx  -P xx  -u xx -p 'xx' -d xx -q "sql" -v 1
 ```
+#####注意：命令行传参时，参数名与值需要用空格隔开
 
 #### 2.3 配置文件传参调用
 
