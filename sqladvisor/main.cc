@@ -22,6 +22,7 @@
 #define CHUNK_SIZE 10000
 #define DBNAME "information_schema"
 #define GROUT_NAME "sqladvisor"
+//设置SQL语句的分隔符
 #define SEP ';'
 #define EXPLAIN_ROWS 8
 #define INDEX_NON_UNIQUE 1
@@ -31,6 +32,7 @@
 #define INDEX_CARDINALITY 6
 #define SHOW_ROWS 4
 #define AFFECT_ROWS 0
+#define SQL_NUM_ONE_LINE 10
 
 using std::set;
 using std::queue;
@@ -1262,6 +1264,7 @@ static GOptionEntry entries[] = { { "defaults-file", 'f', 0,
         "sqls", 'q', 0, G_OPTION_ARG_STRING_ARRAY, &(options.query), "sqls",
         NULL }, { "verbose", 'v', 0, G_OPTION_ARG_INT, &(options.verbose),
         "1:output logs 0:output nothing", NULL }, { NULL } };
+
 int g_option_keyfile_parse(GKeyFile *keyfile, const char *ini_group_name,
         GOptionEntry *entries) {
     GError *gerr = NULL;
@@ -1369,7 +1372,13 @@ int main(int argc, char **argv) {
             g_key_file_free(keyfile);
             sql_print_error("read config file failed:%s\n", error->message);
         }
+    }else if(options.query != NULL){
+        gchar *delimiter = g_strnfill(1, SEP);
+        gchar ** query = g_strsplit(options.query[0], delimiter,SQL_NUM_ONE_LINE);
+        g_strfreev(options.query);
+        options.query = query;
     }
+
 
     if (options.username == NULL || options.password == NULL
             || options.host == NULL || options.dbname == NULL
@@ -1378,6 +1387,7 @@ int main(int argc, char **argv) {
         return -1;
     }
     while ((query = options.query[i]) != NULL) {
+        sql_print_information("Query %d %s\n", i, query);
         sql_lex = sql_parser(query, options.dbname);
 
         if (sql_lex == NULL) {
