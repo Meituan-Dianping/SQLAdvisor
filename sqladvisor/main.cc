@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <limits>
+#include <locale.h>
 #include "sql/mysqld.h"
 #include "sql/sql_class.h"
 #include "sql/sql_lex.h"
@@ -1339,13 +1340,20 @@ int main(int argc, char **argv) {
     char *query = NULL;
     char *sqlparse_path = strdup("/usr/local/sqlparser");
     int i = 0;
-
+    char *lc = NULL;
     if (mysqld_init(sqlparse_path)) {
         sql_print_error("加载sqlparser模块有错 \n");
         if(sqlparse_path) free(sqlparse_path);
         return -1;
     }
     if(sqlparse_path) free(sqlparse_path);
+
+    lc = setlocale(LC_ALL, "");
+    if (NULL == lc) {
+        sql_print_error("setlocale 有错 \n");
+        if(sqlparse_path) free(sqlparse_path);
+        return -1;
+    }
 
     ConnectionOptionsInit(&options);
     context = g_option_context_new("sqladvisor");
