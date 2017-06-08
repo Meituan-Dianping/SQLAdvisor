@@ -8,7 +8,7 @@ git clone https://github.com/Meituan-Dianping/SQLAdvisor.git
 #### 1.2 安装依赖项
 
 ```
- 1. yum | apt-get  install cmake libaio-devel libffi-devel glib2 glib2-devel
+ 1. yum | apt-get  install make cmake gcc gcc-c++ libaio-devel libffi-devel glib2 glib2-devel
  2. yum | apt-get  install --enablerepo=Percona56 Percona-Server-shared-56
 ```
 **注意**
