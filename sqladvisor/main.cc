@@ -317,9 +317,18 @@ uint get_join_table_result_set(TABLE_LIST *table) {
     int num_fields = mysql_num_fields(result);
 
     MYSQL_ROW row;
-
+    
+    int mysql_server_version = mysql_get_server_version(con);
+    if (options.verbose){
+        sql_print_information("mysql_server_version: %d\n",mysql_server_version);
+    }
     if ((row = mysql_fetch_row(result))) {
-        result_set_count = atoi(row[EXPLAIN_ROWS]);
+        if (mysql_server_version >= 50700){
+            result_set_count = atoi(row[9]);
+        }
+        else{
+            result_set_count = atoi(row[EXPLAIN_ROWS]);
+        }
     }
     g_string_free(cardinality_sql, TRUE);
     mysql_free_result(result);
