@@ -16,7 +16,7 @@ git clone https://github.com/Meituan-Dianping/SQLAdvisor.git
 
 1. 跟据glib安装的路径，修改SQLAdvisor/sqladvisor/CMakeLists.txt中的两处include_directories针对glib设置的path。glib yum 安装默认不需要修改路径
 2. 编译sqladvisor时依赖perconaserverclient_r, 因此需要安装Percona-Server-shared-56。有可能需要配置软链接例如:1. cd /usr/lib64/ 2. ln -s libperconaserverclient_r.so.18 libperconaserverclient_r.so
-3. 有可能需要配置percona56 yum源: yum install http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm
+3. 有可能需要配置percona56 yum源: yum install https://repo.percona.com/yum/percona-release-latest.noarch.rpm
 
 
 #### 1.3 编译依赖项sqlparser
